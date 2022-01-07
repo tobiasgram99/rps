@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+
+    function computerPlay (){
+        let randomNumber = Math.floor(Math.random()*3);
+        if (randomNumber === 0){
+            return "rock";
+        } else if (randomNumber === 1){
+            return "paper";
+        } else if (randomNumber === 2){
+            return "scissors";
+        }
+};
+
+    function gameplay (playerSelection, computerSelection){
+        if (playerSelection === computerSelection){
+            return (`The game is a draw you both chose ${playerSelection}`);
+        } else if (playerSelection === "rock" && computerSelection === "paper"){
+            return (`You lose, paper beats rock`);
+        } else if (playerSelection === "rock" && computerSelection === "scissors"){
+            return ("You win, rock beats scissors");
+        } else if (playerSelection === "paper" && computerSelection === "rock"){
+            return ("You win, paper beats rock");
+        } else if (playerSelection === "paper" && computerSelection === "scissors"){
+            return ("You lose, scissors beats paper");
+        } else if (playerSelection === "scissors" && computerSelection === "rock"){
+            return ("You lose, rock beats scissors");
+        } else if (playerSelection === "scissors" && computerSelection === "paper"){
+            return ("You win, scissors beats paper");
+        } else {
+            return ("Something went wrong!")
+        }
+};
+
+let playerSelection = window.prompt("Choose your weapon!");
+
+const computerSelection = computerPlay();
+console.log(gameplay(playerSelection, computerSelection));
+
+function playGame (){
+    for (let i = 0; i<5; i++){
+        console.log(gameplay(playerSelection,computerSelection))
+    }
+}
+playGame()
+    </script>
+</body>
+</html>
