@@ -6,8 +6,15 @@
     <title>Document</title>
 </head>
 <body>
+    <div class ="buttons" id="buttons">
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    </div>
     <script>
-    
+let humanScore = 0;
+let computerScore = 0;
+
 
     function computerPlay (){
         let randomNumber = Math.floor(Math.random()*3);
@@ -21,36 +28,89 @@
 };
 
     function gameplay (playerSelection, computerSelection){
+        let returnText = "";
         if (playerSelection === computerSelection){
-            return (`The game is a draw you both chose ${playerSelection}`);
+            returnText = (`The game is a draw you both chose ${playerSelection}`);
         } else if (playerSelection === "rock" && computerSelection === "paper"){
-            return (`You lose, paper beats rock`);
+        
+            console.log(computerScore = computerScore + 1);
+            returnText = (`You lose, paper beats rock`);
         } else if (playerSelection === "rock" && computerSelection === "scissors"){
-            return ("You win, rock beats scissors");
+            humanScore += 1;
+            returnText = ("You win, rock beats scissors");
         } else if (playerSelection === "paper" && computerSelection === "rock"){
-            return ("You win, paper beats rock");
+            humanScore += 1;
+            returnText = ("You win, paper beats rock");
         } else if (playerSelection === "paper" && computerSelection === "scissors"){
-            return ("You lose, scissors beats paper");
+            computerScore += 1;
+            returnText = ("You lose, scissors beats paper");
         } else if (playerSelection === "scissors" && computerSelection === "rock"){
-            return ("You lose, rock beats scissors");
+            computerScore += 1;
+            returnText = ("You lose, rock beats scissors");
         } else if (playerSelection === "scissors" && computerSelection === "paper"){
-            return ("You win, scissors beats paper");
+            humanScore += 1;
+            returnText = ("You win, scissors beats paper");
         } else {
-            return ("Something went wrong!")
+            returnText = ("Something went wrong!")
+        } 
+        scoreC.innerText = "Computer score: " + computerScore;
+        scoreH.innerText = "Human score: " + humanScore;
+        text.innerText = returnText;
+        if (computerScore > 4){
+            text.innerText = returnText + " The computer won the overall game!";
+            humanScore = 0;
+            computerScore = 0;
+        } else if (humanScore > 4){
+            text.innerText = returnText + " The humad won the overall game!";
+            humanScore = 0;
+            computerScore = 0;
         }
+        return returnText;
 };
 
-let playerSelection = window.prompt("Choose your weapon!");
 
-const computerSelection = computerPlay();
-console.log(gameplay(playerSelection, computerSelection));
+const buttons = document.querySelector("#buttons")
 
-function playGame (){
-    for (let i = 0; i<5; i++){
-        console.log(gameplay(playerSelection,computerSelection))
-    }
+const scoreC = document.createElement("p");
+scoreC.innerText = "Computer score: " + computerScore
+
+const scoreH = document.createElement("p");
+scoreH.innerText = "Human score: " + humanScore
+
+const text = document.createElement("div"); 
+
+
+buttons.appendChild(scoreH);
+buttons.appendChild(scoreC);
+
+buttons.appendChild(text);
+
+function playRound (playerChoice){
+    const playerSelection = playerChoice;
+    let computerChoice = computerPlay;
+    console.log(computerChoice, playerSelection)
 }
-playGame()
+function chooseRock (){
+    gameplay("rock",computerPlay());
+}
+function choosePaper (){
+    console.log(gameplay("paper",computerPlay()));
+}
+function chooseScissors (){
+    console.log(gameplay("scissors",computerPlay()));
+}
+
+function gameWinner (winner){
+    winner
+}
+
+document.getElementById("rock").addEventListener("click", chooseRock );
+document.getElementById("paper").addEventListener("click", choosePaper );
+document.getElementById("scissors").addEventListener("click", chooseScissors );
+//keys.forEach (key => key.addEventListener("transitionend", removeTransition))
+//const computerSelection = computerPlay();
+//console.log(gameplay(playerSelection, computerSelection));
+
     </script>
 </body>
 </html>
